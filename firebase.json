@@ -1,0 +1,40 @@
+{
+  "apphosting": {
+    "backendId": "coconut",
+    "rootDir": ".",
+    "ignore": [
+      "node_modules",
+      ".git",
+      ".next",
+      ".env*",
+      ".secrets",
+      ".artifacts",
+      ".playwright-cli",
+      "tmp",
+      "output",
+      "tests",
+      "docs",
+      "AGENTS.md",
+      "CLAUDE.md",
+      "*.log",
+      "*.tsbuildinfo",
+      "*.pem",
+      "*.key",
+      "*service-account*.json"
+    ]
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "emulators": {
+    "firestore": {
+      "host": "127.0.0.1",
+      "port": 8086
+    },
+    "ui": {
+      "enabled": false
+    },
+    "singleProjectMode": true
+  }
+}

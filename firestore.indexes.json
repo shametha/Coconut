@@ -1,0 +1,13 @@
+{
+  "indexes": [],
+  "fieldOverrides": [
+    { "collectionGroup": "workspaces", "fieldPath": "state", "indexes": [] },
+    { "collectionGroup": "cases", "fieldPath": "snapshot", "indexes": [] },
+    {
+      "collectionGroup": "source_documents",
+      "fieldPath": "document",
+      "indexes": []
+    },
+    { "collectionGroup": "ai_runs", "fieldPath": "run", "indexes": [] }
+  ]
+}

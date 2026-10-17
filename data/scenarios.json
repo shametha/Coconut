@@ -1,0 +1,1231 @@
+{
+  "generated": "2026-10-01",
+  "generator": "Coconut synthetic case scenarios",
+  "model_version": "COCONUT_RULES_V1",
+  "policy_chunks": [
+    {
+      "policy_id": "POL-REVIEW-8.1",
+      "section": "8.1",
+      "title": "Internal review of repeated outbound payments",
+      "content": "When repeated outbound payments are recorded on an account, log the transaction sequence, check beneficiary provenance and any prior account relationships, and route for human disposition. This passage describes an internal review procedure and does not constitute a regulatory requirement or determination of liability.",
+      "effective_at": "2026-01-01T00:00:00+05:30"
+    },
+    {
+      "policy_id": "POL-REVIEW-9.2",
+      "section": "9.2",
+      "title": "Internal review of high-value payment clusters",
+      "content": "When a cluster of high-value outbound payments to a single beneficiary is recorded, document the payment details, verify available source-of-funds information, review prior beneficiary relationships across investigated accounts, and route for human disposition. This passage describes an internal review procedure and does not constitute a regulatory requirement or determination of liability.",
+      "effective_at": "2026-01-01T00:00:00+05:30"
+    },
+    {
+      "policy_id": "POL-AML-7.3",
+      "section": "7.3",
+      "title": "Rapid connected outbound activity",
+      "content": "Review rapid outbound transfers when unusual account velocity and beneficiary links to previous investigations occur together. An alert requires human validation and does not establish wrongdoing.",
+      "effective_at": "2026-01-01T00:00:00+05:30"
+    }
+  ],
+  "cases": [
+    {
+      "case": {
+        "case_id": "PF-0042",
+        "core_id": "CORE-0042",
+        "customer_name": "Aster Trading Co.",
+        "account_id": "AC-1048",
+        "amount": 487000,
+        "currency": "INR",
+        "opened_at": "24 Sep 2026 · 20:12 IST",
+        "title": "Coordinated outbound movement",
+        "risk_score": 91,
+        "model_version": "COCONUT_RULES_V1",
+        "summary": "Five transfers in 11 minutes, originating from a new device and converging on a beneficiary linked to prior investigations.",
+        "challenged_score": 78
+      },
+      "transactions": [
+        {
+          "transaction_id": "TX-9011",
+          "amount": 95000,
+          "beneficiary_id": "B-220",
+          "occurred_at": "2026-09-24T20:01:00+05:30"
+        },
+        {
+          "transaction_id": "TX-9012",
+          "amount": 92000,
+          "beneficiary_id": "B-220",
+          "occurred_at": "2026-09-24T20:04:00+05:30"
+        },
+        {
+          "transaction_id": "TX-9013",
+          "amount": 103000,
+          "beneficiary_id": "B-220",
+          "occurred_at": "2026-09-24T20:06:00+05:30"
+        },
+        {
+          "transaction_id": "TX-9014",
+          "amount": 97000,
+          "beneficiary_id": "B-220",
+          "occurred_at": "2026-09-24T20:09:00+05:30"
+        },
+        {
+          "transaction_id": "TX-9015",
+          "amount": 100000,
+          "beneficiary_id": "B-220",
+          "occurred_at": "2026-09-24T20:12:00+05:30"
+        }
+      ],
+      "background_transactions": [
+        {
+          "transaction_id": "TX-4812",
+          "beneficiary_id": "B-097",
+          "amount": 300000,
+          "occurred_at": "2026-01-24T16:00:00+05:30"
+        }
+      ],
+      "beneficiaries": [
+        {
+          "beneficiary_record_id": "BEN-220",
+          "beneficiary_id": "B-220",
+          "added_at": "2026-09-05T10:00:00+05:30"
+        }
+      ],
+      "device_events": [
+        {
+          "device_event_id": "DEV-0188",
+          "case_id": "PF-0042",
+          "device_id": "DEVICE-NEW-188",
+          "location": "Mumbai, IN",
+          "first_seen_at": "2026-09-24T20:00:43+05:30"
+        },
+        {
+          "device_event_id": "DEV-HIST-001",
+          "case_id": "PF-0042",
+          "device_id": "DEVICE-KNOWN-001",
+          "location": "Mumbai, IN",
+          "first_seen_at": "2026-09-10T11:00:00+05:30"
+        }
+      ],
+      "account_links": [
+        {
+          "link_id": "LINK-220-A",
+          "account_id": "AC-0217",
+          "beneficiary_id": "B-220",
+          "prior_case_id": "PF-0017",
+          "observed_at": "2026-09-24T20:09:00+05:30"
+        },
+        {
+          "link_id": "LINK-220-B",
+          "account_id": "AC-0371",
+          "beneficiary_id": "B-220",
+          "prior_case_id": "PF-0023",
+          "observed_at": "2026-09-24T20:09:00+05:30"
+        }
+      ],
+      "risk_features": {
+        "feature_id": "RF-0042",
+        "transfers_in_window": 5,
+        "baseline_transfers_per_11_min": 0.4032258064516129,
+        "baseline_window_amount": 14200,
+        "velocity_multiple": 12.4,
+        "window_start": "2026-09-24T20:01:00+05:30",
+        "window_end": "2026-09-24T20:12:00+05:30"
+      },
+      "evidence": [
+        {
+          "evidence_id": "C1",
+          "kind": "transaction",
+          "title": "Five outbound transfers",
+          "summary": "₹487,000 moved in 11 minutes across five transactions.",
+          "source_table": "firestore/transactions",
+          "source_record": "TX-9011, TX-9012, TX-9013, TX-9014, TX-9015",
+          "observed_at": "2026-09-24T20:12:00+05:30",
+          "score_points": 27
+        },
+        {
+          "evidence_id": "C2",
+          "kind": "behaviour",
+          "title": "Velocity above baseline",
+          "summary": "12.4× this account’s 30-day transfer velocity.",
+          "source_table": "firestore/features",
+          "source_record": "RF-0042",
+          "observed_at": "2026-09-24T20:12:00+05:30",
+          "score_points": 21
+        },
+        {
+          "evidence_id": "C3",
+          "kind": "device",
+          "title": "First-seen device",
+          "summary": "The initiating device first appeared 17 seconds before the first transfer.",
+          "source_table": "firestore/devices",
+          "source_record": "DEV-0188",
+          "observed_at": "2026-09-24T20:00:43+05:30",
+          "score_points": 17
+        },
+        {
+          "evidence_id": "C4",
+          "kind": "network",
+          "title": "Shared beneficiary",
+          "summary": "Beneficiary B-220 connects to two previously investigated accounts.",
+          "source_table": "firestore/links",
+          "source_record": "LINK-220-A, LINK-220-B",
+          "observed_at": "2026-09-24T20:09:00+05:30",
+          "score_points": 14
+        },
+        {
+          "evidence_id": "C5",
+          "kind": "policy",
+          "title": "Policy trigger",
+          "summary": "Policy §7.3 calls for review of rapid, connected outbound activity.",
+          "source_table": "firestore/policies",
+          "source_record": "POL-AML-7.3",
+          "observed_at": "2026-09-24T20:12:00+05:30",
+          "score_points": 12
+        }
+      ],
+      "risk_events": [
+        {
+          "step": 1,
+          "time_label": "19:59",
+          "label": "Baseline",
+          "detail": "Activity consistent with prior account history.",
+          "risk_score": 12,
+          "network_points": 0
+        },
+        {
+          "step": 2,
+          "time_label": "20:00",
+          "label": "New device",
+          "detail": "An unseen device authenticates to the account.",
+          "risk_score": 26,
+          "network_points": 0
+        },
+        {
+          "step": 3,
+          "time_label": "20:01",
+          "label": "First transfer",
+          "detail": "First outbound payment to beneficiary B-220.",
+          "risk_score": 37,
+          "network_points": 0
+        },
+        {
+          "step": 4,
+          "time_label": "20:05",
+          "label": "Velocity spike",
+          "detail": "Transfer rate rises above the 30-day baseline.",
+          "risk_score": 61,
+          "network_points": 0
+        },
+        {
+          "step": 5,
+          "time_label": "20:09",
+          "label": "Network link",
+          "detail": "B-220 is connected to two prior investigations.",
+          "risk_score": 79,
+          "network_points": 14
+        },
+        {
+          "step": 6,
+          "time_label": "20:12",
+          "label": "Fifth transfer",
+          "detail": "Total outbound value reaches ₹487,000.",
+          "risk_score": 91,
+          "network_points": 14
+        }
+      ],
+      "mitigations": [
+        {
+          "mitigation_id": "M1",
+          "title": "Beneficiary relationship predates alert",
+          "detail": "B-220 was added 19 days earlier.",
+          "source_ref": "firestore/beneficiaries · BEN-220",
+          "check_kind": "beneficiary_history",
+          "adjustment_points": 5
+        },
+        {
+          "mitigation_id": "M2",
+          "title": "Location is familiar",
+          "detail": "The session location matches the customer’s recent geography.",
+          "source_ref": "firestore/devices · DEV-0188 / DEV-HIST-001",
+          "check_kind": "familiar_location",
+          "adjustment_points": 3
+        },
+        {
+          "mitigation_id": "M3",
+          "title": "Prior large payment",
+          "detail": "One comparable transfer occurred eight months earlier.",
+          "source_ref": "firestore/transactions · TX-4812",
+          "check_kind": "prior_large_payment",
+          "adjustment_points": 5
+        }
+      ]
+    },
+    {
+      "case": {
+        "case_id": "PF-0051",
+        "core_id": "CORE-0051",
+        "customer_name": "Meridian Exports Ltd.",
+        "account_id": "AC-2190",
+        "amount": 220000,
+        "currency": "INR",
+        "opened_at": "25 Sep 2026 · 14:38 IST",
+        "title": "Established-beneficiary payment cluster",
+        "risk_score": 67,
+        "model_version": "COCONUT_RULES_V1",
+        "summary": "Three transfers totaling INR 220,000 in 8 minutes to a beneficiary linked to one prior investigated account.",
+        "challenged_score": 57
+      },
+      "transactions": [
+        {
+          "transaction_id": "TX-5101",
+          "beneficiary_id": "B-340",
+          "amount": 75000,
+          "occurred_at": "2026-09-25T14:30:00+05:30"
+        },
+        {
+          "transaction_id": "TX-5102",
+          "beneficiary_id": "B-340",
+          "amount": 72000,
+          "occurred_at": "2026-09-25T14:34:00+05:30"
+        },
+        {
+          "transaction_id": "TX-5103",
+          "beneficiary_id": "B-340",
+          "amount": 73000,
+          "occurred_at": "2026-09-25T14:38:00+05:30"
+        }
+      ],
+      "background_transactions": [
+        {
+          "transaction_id": "TX-3801",
+          "beneficiary_id": "B-097",
+          "amount": 150000,
+          "occurred_at": "2026-05-10T11:00:00+05:30"
+        }
+      ],
+      "beneficiaries": [
+        {
+          "beneficiary_record_id": "BEN-340",
+          "beneficiary_id": "B-340",
+          "added_at": "2026-09-01T09:00:00+05:30"
+        }
+      ],
+      "device_events": [
+        {
+          "device_event_id": "DEV-0251",
+          "case_id": "PF-0051",
+          "device_id": "DEVICE-KNOWN-251",
+          "location": "Chennai, IN",
+          "first_seen_at": "2026-09-25T14:28:00+05:30"
+        }
+      ],
+      "account_links": [
+        {
+          "link_id": "LINK-340-A",
+          "account_id": "AC-0580",
+          "beneficiary_id": "B-340",
+          "prior_case_id": "PF-0029",
+          "observed_at": "2026-09-25T14:35:00+05:30"
+        }
+      ],
+      "risk_features": {
+        "feature_id": "RF-0051",
+        "transfers_in_window": 3,
+        "baseline_transfers_per_11_min": 0.4838709677419355,
+        "baseline_window_amount": 9800,
+        "velocity_multiple": 6.2,
+        "window_start": "2026-09-25T14:30:00+05:30",
+        "window_end": "2026-09-25T14:38:00+05:30"
+      },
+      "policy_id": "POL-REVIEW-8.1",
+      "evidence": [
+        {
+          "evidence_id": "C1",
+          "kind": "transaction",
+          "title": "Three outbound transfers",
+          "summary": "INR 220,000 moved in 8 minutes across three transactions.",
+          "source_table": "firestore/transactions",
+          "source_record": "TX-5101, TX-5102, TX-5103",
+          "observed_at": "2026-09-25T14:38:00+05:30",
+          "score_points": 18
+        },
+        {
+          "evidence_id": "C2",
+          "kind": "behaviour",
+          "title": "Configured transfer baseline",
+          "summary": "The observed window cannot be compared with the configured 11-minute baseline.",
+          "source_table": "firestore/features",
+          "source_record": "RF-0051",
+          "observed_at": "2026-09-25T14:38:00+05:30",
+          "score_points": 14
+        },
+        {
+          "evidence_id": "C3",
+          "kind": "device",
+          "title": "Device recorded before transfers",
+          "summary": "The cited device was recorded 120 seconds before the first transfer.",
+          "source_table": "firestore/devices",
+          "source_record": "DEV-0251",
+          "observed_at": "2026-09-25T14:28:00+05:30",
+          "score_points": 13
+        },
+        {
+          "evidence_id": "C4",
+          "kind": "network",
+          "title": "Shared beneficiary link",
+          "summary": "Beneficiary B-340 connects to one previously investigated account.",
+          "source_table": "firestore/links",
+          "source_record": "LINK-340-A",
+          "observed_at": "2026-09-25T14:35:00+05:30",
+          "score_points": 10
+        },
+        {
+          "evidence_id": "C5",
+          "kind": "policy",
+          "title": "Review procedure trigger",
+          "summary": "Internal review procedure §8.1 applies.",
+          "source_table": "firestore/policies",
+          "source_record": "POL-REVIEW-8.1",
+          "observed_at": "2026-09-25T14:38:00+05:30",
+          "score_points": 12
+        }
+      ],
+      "risk_events": [
+        {
+          "step": 1,
+          "time_label": "14:27",
+          "label": "Baseline",
+          "detail": "Configured starting score applied before observed activity.",
+          "risk_score": 8,
+          "network_points": 0
+        },
+        {
+          "step": 2,
+          "time_label": "14:28",
+          "label": "Device login",
+          "detail": "Recorded device authenticates to the account.",
+          "risk_score": 15,
+          "network_points": 0
+        },
+        {
+          "step": 3,
+          "time_label": "14:30",
+          "label": "First transfer",
+          "detail": "First outbound payment to B-340.",
+          "risk_score": 30,
+          "network_points": 0
+        },
+        {
+          "step": 4,
+          "time_label": "14:35",
+          "label": "Network link",
+          "detail": "B-340 connected to one prior investigation.",
+          "risk_score": 50,
+          "network_points": 10
+        },
+        {
+          "step": 5,
+          "time_label": "14:38",
+          "label": "Third transfer",
+          "detail": "Total outbound reaches INR 220,000.",
+          "risk_score": 67,
+          "network_points": 10
+        }
+      ],
+      "mitigations": [
+        {
+          "mitigation_id": "M1",
+          "title": "Beneficiary relationship predates alert",
+          "detail": "B-340 was added 24 days earlier.",
+          "source_ref": "firestore/beneficiaries · BEN-340",
+          "check_kind": "beneficiary_history",
+          "adjustment_points": 4
+        },
+        {
+          "mitigation_id": "M2",
+          "title": "Prior large payment",
+          "detail": "A comparable transfer occurred four months earlier.",
+          "source_ref": "firestore/transactions · TX-3801",
+          "check_kind": "prior_large_payment",
+          "adjustment_points": 6
+        }
+      ]
+    },
+    {
+      "case": {
+        "case_id": "PF-0063",
+        "core_id": "CORE-0063",
+        "customer_name": "Pinnacle Ventures Pvt.",
+        "account_id": "AC-3372",
+        "amount": 680000,
+        "currency": "INR",
+        "opened_at": "26 Sep 2026 · 10:44 IST",
+        "title": "Repeated outbound payments",
+        "risk_score": 84,
+        "model_version": "COCONUT_RULES_V1",
+        "summary": "Seven transfers totaling INR 680,000 in 14 minutes to a beneficiary linked to two prior investigated accounts.",
+        "challenged_score": 81
+      },
+      "transactions": [
+        {
+          "transaction_id": "TX-6301",
+          "beneficiary_id": "B-510",
+          "amount": 99000,
+          "occurred_at": "2026-09-26T10:30:00+05:30"
+        },
+        {
+          "transaction_id": "TX-6302",
+          "beneficiary_id": "B-510",
+          "amount": 98000,
+          "occurred_at": "2026-09-26T10:32:00+05:30"
+        },
+        {
+          "transaction_id": "TX-6303",
+          "beneficiary_id": "B-510",
+          "amount": 97000,
+          "occurred_at": "2026-09-26T10:34:00+05:30"
+        },
+        {
+          "transaction_id": "TX-6304",
+          "beneficiary_id": "B-510",
+          "amount": 96000,
+          "occurred_at": "2026-09-26T10:36:00+05:30"
+        },
+        {
+          "transaction_id": "TX-6305",
+          "beneficiary_id": "B-510",
+          "amount": 98000,
+          "occurred_at": "2026-09-26T10:38:00+05:30"
+        },
+        {
+          "transaction_id": "TX-6306",
+          "beneficiary_id": "B-510",
+          "amount": 95000,
+          "occurred_at": "2026-09-26T10:40:00+05:30"
+        },
+        {
+          "transaction_id": "TX-6307",
+          "beneficiary_id": "B-510",
+          "amount": 97000,
+          "occurred_at": "2026-09-26T10:44:00+05:30"
+        }
+      ],
+      "background_transactions": [],
+      "beneficiaries": [
+        {
+          "beneficiary_record_id": "BEN-510",
+          "beneficiary_id": "B-510",
+          "added_at": "2026-09-26T10:29:00+05:30"
+        }
+      ],
+      "device_events": [
+        {
+          "device_event_id": "DEV-0390",
+          "case_id": "PF-0063",
+          "device_id": "DEVICE-NEW-390",
+          "location": "Kolkata, IN",
+          "first_seen_at": "2026-09-26T10:29:30+05:30"
+        },
+        {
+          "device_event_id": "DEV-HIST-063",
+          "case_id": "PF-0063",
+          "device_id": "DEVICE-KNOWN-063",
+          "location": "Kolkata, IN",
+          "first_seen_at": "2026-09-20T08:00:00+05:30"
+        }
+      ],
+      "account_links": [
+        {
+          "link_id": "LINK-510-A",
+          "account_id": "AC-0712",
+          "beneficiary_id": "B-510",
+          "prior_case_id": "PF-0031",
+          "observed_at": "2026-09-26T10:36:00+05:30"
+        },
+        {
+          "link_id": "LINK-510-B",
+          "account_id": "AC-0895",
+          "beneficiary_id": "B-510",
+          "prior_case_id": "PF-0038",
+          "observed_at": "2026-09-26T10:36:00+05:30"
+        }
+      ],
+      "risk_features": {
+        "feature_id": "RF-0063",
+        "transfers_in_window": 7,
+        "baseline_transfers_per_11_min": 0.7142857142857143,
+        "baseline_window_amount": 18500,
+        "velocity_multiple": 9.8,
+        "window_start": "2026-09-26T10:30:00+05:30",
+        "window_end": "2026-09-26T10:44:00+05:30"
+      },
+      "policy_id": "POL-REVIEW-8.1",
+      "evidence": [
+        {
+          "evidence_id": "C1",
+          "kind": "transaction",
+          "title": "Seven outbound transfers",
+          "summary": "INR 680,000 moved in 14 minutes across seven transactions.",
+          "source_table": "firestore/transactions",
+          "source_record": "TX-6301, TX-6302, TX-6303, TX-6304, TX-6305, TX-6306, TX-6307",
+          "observed_at": "2026-09-26T10:44:00+05:30",
+          "score_points": 25
+        },
+        {
+          "evidence_id": "C2",
+          "kind": "behaviour",
+          "title": "Configured transfer baseline",
+          "summary": "The observed window cannot be compared with the configured 11-minute baseline.",
+          "source_table": "firestore/features",
+          "source_record": "RF-0063",
+          "observed_at": "2026-09-26T10:44:00+05:30",
+          "score_points": 19
+        },
+        {
+          "evidence_id": "C3",
+          "kind": "device",
+          "title": "Device recorded before transfers",
+          "summary": "The cited device was recorded 30 seconds before the first transfer.",
+          "source_table": "firestore/devices",
+          "source_record": "DEV-0390",
+          "observed_at": "2026-09-26T10:29:30+05:30",
+          "score_points": 16
+        },
+        {
+          "evidence_id": "C4",
+          "kind": "network",
+          "title": "Shared beneficiary links",
+          "summary": "Beneficiary B-510 connects to two previously investigated accounts.",
+          "source_table": "firestore/links",
+          "source_record": "LINK-510-A, LINK-510-B",
+          "observed_at": "2026-09-26T10:36:00+05:30",
+          "score_points": 12
+        },
+        {
+          "evidence_id": "C5",
+          "kind": "policy",
+          "title": "Review procedure trigger",
+          "summary": "Internal review procedure §8.1 applies.",
+          "source_table": "firestore/policies",
+          "source_record": "POL-REVIEW-8.1",
+          "observed_at": "2026-09-26T10:44:00+05:30",
+          "score_points": 12
+        }
+      ],
+      "risk_events": [
+        {
+          "step": 1,
+          "time_label": "10:28",
+          "label": "Baseline",
+          "detail": "Configured starting score applied before observed activity.",
+          "risk_score": 10,
+          "network_points": 0
+        },
+        {
+          "step": 2,
+          "time_label": "10:29",
+          "label": "Device recorded",
+          "detail": "A device is recorded on the account.",
+          "risk_score": 22,
+          "network_points": 0
+        },
+        {
+          "step": 3,
+          "time_label": "10:30",
+          "label": "First transfer",
+          "detail": "First outbound payment to B-510.",
+          "risk_score": 35,
+          "network_points": 0
+        },
+        {
+          "step": 4,
+          "time_label": "10:36",
+          "label": "Transfer cluster",
+          "detail": "Seven transfers recorded in rapid succession.",
+          "risk_score": 58,
+          "network_points": 0
+        },
+        {
+          "step": 5,
+          "time_label": "10:36",
+          "label": "Network link",
+          "detail": "B-510 connected to two prior investigations.",
+          "risk_score": 72,
+          "network_points": 12
+        },
+        {
+          "step": 6,
+          "time_label": "10:44",
+          "label": "Seventh transfer",
+          "detail": "Total outbound reaches INR 680,000.",
+          "risk_score": 84,
+          "network_points": 12
+        }
+      ],
+      "mitigations": [
+        {
+          "mitigation_id": "M1",
+          "title": "Location is familiar",
+          "detail": "The session location matches an earlier device event on this account.",
+          "source_ref": "firestore/devices · DEV-0390 / DEV-HIST-063",
+          "check_kind": "familiar_location",
+          "adjustment_points": 3
+        }
+      ]
+    },
+    {
+      "case": {
+        "case_id": "PF-0078",
+        "core_id": "CORE-0078",
+        "customer_name": "Coral Bay Traders",
+        "account_id": "AC-4501",
+        "amount": 350000,
+        "currency": "INR",
+        "opened_at": "27 Sep 2026 · 16:11 IST",
+        "title": "Device change with prior activity",
+        "risk_score": 73,
+        "model_version": "COCONUT_RULES_V1",
+        "summary": "Four transfers totaling INR 350,000 in 11 minutes from a recently recorded device to a beneficiary linked to one prior investigated account.",
+        "challenged_score": 58
+      },
+      "transactions": [
+        {
+          "transaction_id": "TX-7801",
+          "beneficiary_id": "B-620",
+          "amount": 90000,
+          "occurred_at": "2026-09-27T16:00:00+05:30"
+        },
+        {
+          "transaction_id": "TX-7802",
+          "beneficiary_id": "B-620",
+          "amount": 88000,
+          "occurred_at": "2026-09-27T16:04:00+05:30"
+        },
+        {
+          "transaction_id": "TX-7803",
+          "beneficiary_id": "B-620",
+          "amount": 85000,
+          "occurred_at": "2026-09-27T16:07:00+05:30"
+        },
+        {
+          "transaction_id": "TX-7804",
+          "beneficiary_id": "B-620",
+          "amount": 87000,
+          "occurred_at": "2026-09-27T16:11:00+05:30"
+        }
+      ],
+      "background_transactions": [
+        {
+          "transaction_id": "TX-6201",
+          "beneficiary_id": "B-620",
+          "amount": 200000,
+          "occurred_at": "2026-03-15T13:00:00+05:30"
+        }
+      ],
+      "beneficiaries": [
+        {
+          "beneficiary_record_id": "BEN-620",
+          "beneficiary_id": "B-620",
+          "added_at": "2026-06-10T14:00:00+05:30"
+        }
+      ],
+      "device_events": [
+        {
+          "device_event_id": "DEV-0478",
+          "case_id": "PF-0078",
+          "device_id": "DEVICE-NEW-478",
+          "location": "Hyderabad, IN",
+          "first_seen_at": "2026-09-27T15:59:38+05:30"
+        },
+        {
+          "device_event_id": "DEV-HIST-078",
+          "case_id": "PF-0078",
+          "device_id": "DEVICE-KNOWN-078",
+          "location": "Hyderabad, IN",
+          "first_seen_at": "2026-09-15T09:00:00+05:30"
+        }
+      ],
+      "account_links": [
+        {
+          "link_id": "LINK-620-A",
+          "account_id": "AC-0443",
+          "beneficiary_id": "B-620",
+          "prior_case_id": "PF-0011",
+          "observed_at": "2026-09-27T16:05:00+05:30"
+        }
+      ],
+      "risk_features": {
+        "feature_id": "RF-0078",
+        "transfers_in_window": 4,
+        "baseline_transfers_per_11_min": 0.5333333333333333,
+        "baseline_window_amount": 12400,
+        "velocity_multiple": 7.5,
+        "window_start": "2026-09-27T16:00:00+05:30",
+        "window_end": "2026-09-27T16:11:00+05:30"
+      },
+      "policy_id": "POL-REVIEW-8.1",
+      "evidence": [
+        {
+          "evidence_id": "C1",
+          "kind": "transaction",
+          "title": "Four outbound transfers",
+          "summary": "INR 350,000 moved in 11 minutes across four transactions.",
+          "source_table": "firestore/transactions",
+          "source_record": "TX-7801, TX-7802, TX-7803, TX-7804",
+          "observed_at": "2026-09-27T16:11:00+05:30",
+          "score_points": 20
+        },
+        {
+          "evidence_id": "C2",
+          "kind": "behaviour",
+          "title": "Velocity above baseline",
+          "summary": "7.5x the configured 11-minute baseline.",
+          "source_table": "firestore/features",
+          "source_record": "RF-0078",
+          "observed_at": "2026-09-27T16:11:00+05:30",
+          "score_points": 16
+        },
+        {
+          "evidence_id": "C3",
+          "kind": "device",
+          "title": "Device recorded before transfers",
+          "summary": "The cited device was recorded 22 seconds before the first transfer.",
+          "source_table": "firestore/devices",
+          "source_record": "DEV-0478",
+          "observed_at": "2026-09-27T15:59:38+05:30",
+          "score_points": 15
+        },
+        {
+          "evidence_id": "C4",
+          "kind": "network",
+          "title": "Shared beneficiary link",
+          "summary": "Beneficiary B-620 connects to one previously investigated account.",
+          "source_table": "firestore/links",
+          "source_record": "LINK-620-A",
+          "observed_at": "2026-09-27T16:05:00+05:30",
+          "score_points": 10
+        },
+        {
+          "evidence_id": "C5",
+          "kind": "policy",
+          "title": "Review procedure trigger",
+          "summary": "Internal review procedure §8.1 applies.",
+          "source_table": "firestore/policies",
+          "source_record": "POL-REVIEW-8.1",
+          "observed_at": "2026-09-27T16:11:00+05:30",
+          "score_points": 12
+        }
+      ],
+      "risk_events": [
+        {
+          "step": 1,
+          "time_label": "15:58",
+          "label": "Baseline",
+          "detail": "Configured starting score applied before observed activity.",
+          "risk_score": 10,
+          "network_points": 0
+        },
+        {
+          "step": 2,
+          "time_label": "15:59",
+          "label": "Device recorded",
+          "detail": "A device is recorded on the account.",
+          "risk_score": 24,
+          "network_points": 0
+        },
+        {
+          "step": 3,
+          "time_label": "16:00",
+          "label": "First transfer",
+          "detail": "First outbound payment to B-620.",
+          "risk_score": 38,
+          "network_points": 0
+        },
+        {
+          "step": 4,
+          "time_label": "16:05",
+          "label": "Network link",
+          "detail": "B-620 connected to one prior investigation.",
+          "risk_score": 55,
+          "network_points": 10
+        },
+        {
+          "step": 5,
+          "time_label": "16:07",
+          "label": "Third transfer",
+          "detail": "Three transfers totaling INR 263,000 recorded in 7 minutes.",
+          "risk_score": 63,
+          "network_points": 10
+        },
+        {
+          "step": 6,
+          "time_label": "16:11",
+          "label": "Fourth transfer",
+          "detail": "Total outbound reaches INR 350,000 at the 11-minute window endpoint.",
+          "risk_score": 73,
+          "network_points": 10
+        }
+      ],
+      "mitigations": [
+        {
+          "mitigation_id": "M1",
+          "title": "Beneficiary relationship predates alert",
+          "detail": "B-620 was added over three months earlier.",
+          "source_ref": "firestore/beneficiaries · BEN-620",
+          "check_kind": "beneficiary_history",
+          "adjustment_points": 5
+        },
+        {
+          "mitigation_id": "M2",
+          "title": "Location is familiar",
+          "detail": "The session location matches an earlier device event on this account.",
+          "source_ref": "firestore/devices · DEV-0478 / DEV-HIST-078",
+          "check_kind": "familiar_location",
+          "adjustment_points": 3
+        },
+        {
+          "mitigation_id": "M3",
+          "title": "Prior large payment",
+          "detail": "A comparable transfer occurred six months earlier.",
+          "source_ref": "firestore/transactions · TX-6201",
+          "check_kind": "prior_large_payment",
+          "adjustment_points": 7
+        }
+      ]
+    },
+    {
+      "case": {
+        "case_id": "PF-0089",
+        "core_id": "CORE-0089",
+        "customer_name": "Northgate Industries",
+        "account_id": "AC-5714",
+        "amount": 950000,
+        "currency": "INR",
+        "opened_at": "28 Sep 2026 · 11:40 IST",
+        "title": "High-value outbound cluster",
+        "risk_score": 95,
+        "model_version": "COCONUT_RULES_V1",
+        "summary": "Six transfers totaling INR 950,000 in 10 minutes to a beneficiary linked to three prior investigated accounts.",
+        "challenged_score": 95
+      },
+      "transactions": [
+        {
+          "transaction_id": "TX-8901",
+          "beneficiary_id": "B-770",
+          "amount": 160000,
+          "occurred_at": "2026-09-28T11:30:00+05:30"
+        },
+        {
+          "transaction_id": "TX-8902",
+          "beneficiary_id": "B-770",
+          "amount": 155000,
+          "occurred_at": "2026-09-28T11:32:00+05:30"
+        },
+        {
+          "transaction_id": "TX-8903",
+          "beneficiary_id": "B-770",
+          "amount": 162000,
+          "occurred_at": "2026-09-28T11:34:00+05:30"
+        },
+        {
+          "transaction_id": "TX-8904",
+          "beneficiary_id": "B-770",
+          "amount": 158000,
+          "occurred_at": "2026-09-28T11:36:00+05:30"
+        },
+        {
+          "transaction_id": "TX-8905",
+          "beneficiary_id": "B-770",
+          "amount": 157000,
+          "occurred_at": "2026-09-28T11:38:00+05:30"
+        },
+        {
+          "transaction_id": "TX-8906",
+          "beneficiary_id": "B-770",
+          "amount": 158000,
+          "occurred_at": "2026-09-28T11:40:00+05:30"
+        }
+      ],
+      "background_transactions": [],
+      "beneficiaries": [
+        {
+          "beneficiary_record_id": "BEN-770",
+          "beneficiary_id": "B-770",
+          "added_at": "2026-09-28T11:29:00+05:30"
+        }
+      ],
+      "device_events": [
+        {
+          "device_event_id": "DEV-0589",
+          "case_id": "PF-0089",
+          "device_id": "DEVICE-NEW-589",
+          "location": "Bangalore, IN",
+          "first_seen_at": "2026-09-28T11:29:51+05:30"
+        }
+      ],
+      "account_links": [
+        {
+          "link_id": "LINK-770-A",
+          "account_id": "AC-0156",
+          "beneficiary_id": "B-770",
+          "prior_case_id": "PF-0008",
+          "observed_at": "2026-09-28T11:35:00+05:30"
+        },
+        {
+          "link_id": "LINK-770-B",
+          "account_id": "AC-0298",
+          "beneficiary_id": "B-770",
+          "prior_case_id": "PF-0014",
+          "observed_at": "2026-09-28T11:35:00+05:30"
+        },
+        {
+          "link_id": "LINK-770-C",
+          "account_id": "AC-0641",
+          "beneficiary_id": "B-770",
+          "prior_case_id": "PF-0036",
+          "observed_at": "2026-09-28T11:35:00+05:30"
+        }
+      ],
+      "risk_features": {
+        "feature_id": "RF-0089",
+        "transfers_in_window": 6,
+        "baseline_transfers_per_11_min": 0.3973509933774834,
+        "baseline_window_amount": 22000,
+        "velocity_multiple": 15.1,
+        "window_start": "2026-09-28T11:30:00+05:30",
+        "window_end": "2026-09-28T11:40:00+05:30"
+      },
+      "policy_id": "POL-REVIEW-9.2",
+      "evidence": [
+        {
+          "evidence_id": "C1",
+          "kind": "transaction",
+          "title": "Six outbound transfers",
+          "summary": "INR 950,000 moved in 10 minutes across six transactions.",
+          "source_table": "firestore/transactions",
+          "source_record": "TX-8901, TX-8902, TX-8903, TX-8904, TX-8905, TX-8906",
+          "observed_at": "2026-09-28T11:40:00+05:30",
+          "score_points": 30
+        },
+        {
+          "evidence_id": "C2",
+          "kind": "behaviour",
+          "title": "Configured transfer baseline",
+          "summary": "The observed window cannot be compared with the configured 11-minute baseline.",
+          "source_table": "firestore/features",
+          "source_record": "RF-0089",
+          "observed_at": "2026-09-28T11:40:00+05:30",
+          "score_points": 22
+        },
+        {
+          "evidence_id": "C3",
+          "kind": "device",
+          "title": "Device recorded before transfers",
+          "summary": "The cited device was recorded 9 seconds before the first transfer.",
+          "source_table": "firestore/devices",
+          "source_record": "DEV-0589",
+          "observed_at": "2026-09-28T11:29:51+05:30",
+          "score_points": 18
+        },
+        {
+          "evidence_id": "C4",
+          "kind": "network",
+          "title": "Shared beneficiary links",
+          "summary": "Beneficiary B-770 connects to three previously investigated accounts.",
+          "source_table": "firestore/links",
+          "source_record": "LINK-770-A, LINK-770-B, LINK-770-C",
+          "observed_at": "2026-09-28T11:35:00+05:30",
+          "score_points": 13
+        },
+        {
+          "evidence_id": "C5",
+          "kind": "policy",
+          "title": "Review procedure trigger",
+          "summary": "Internal review procedure §9.2 applies.",
+          "source_table": "firestore/policies",
+          "source_record": "POL-REVIEW-9.2",
+          "observed_at": "2026-09-28T11:40:00+05:30",
+          "score_points": 12
+        }
+      ],
+      "risk_events": [
+        {
+          "step": 1,
+          "time_label": "11:28",
+          "label": "Baseline",
+          "detail": "Configured starting score applied before observed activity.",
+          "risk_score": 8,
+          "network_points": 0
+        },
+        {
+          "step": 2,
+          "time_label": "11:29",
+          "label": "Device recorded",
+          "detail": "A device is recorded on the account.",
+          "risk_score": 22,
+          "network_points": 0
+        },
+        {
+          "step": 3,
+          "time_label": "11:30",
+          "label": "First transfer",
+          "detail": "First outbound payment to B-770.",
+          "risk_score": 38,
+          "network_points": 0
+        },
+        {
+          "step": 4,
+          "time_label": "11:35",
+          "label": "Network link",
+          "detail": "B-770 connected to three prior investigations.",
+          "risk_score": 58,
+          "network_points": 13
+        },
+        {
+          "step": 5,
+          "time_label": "11:38",
+          "label": "Fifth transfer",
+          "detail": "Five transfers totaling INR 792,000 recorded in 8 minutes.",
+          "risk_score": 78,
+          "network_points": 13
+        },
+        {
+          "step": 6,
+          "time_label": "11:40",
+          "label": "Sixth transfer",
+          "detail": "Total outbound reaches INR 950,000.",
+          "risk_score": 95,
+          "network_points": 13
+        }
+      ],
+      "mitigations": []
+    },
+    {
+      "case": {
+        "case_id": "PF-0095",
+        "core_id": "CORE-0095",
+        "customer_name": "Dawnlight Services",
+        "account_id": "AC-6230",
+        "amount": 145000,
+        "currency": "INR",
+        "opened_at": "29 Sep 2026 · 09:18 IST",
+        "title": "Unresolved source records",
+        "risk_score": 55,
+        "model_version": "COCONUT_RULES_V1",
+        "summary": "Two transfers totaling INR 145,000. Device and network source records are unavailable.",
+        "challenged_score": 55
+      },
+      "incomplete": true,
+      "incomplete_missing": [
+        "DEVICE_EVENTS:DEV-0595",
+        "ACCOUNT_LINKS:LINK-410-A"
+      ],
+      "transactions": [
+        {
+          "transaction_id": "TX-9501",
+          "beneficiary_id": "B-410",
+          "amount": 75000,
+          "occurred_at": "2026-09-29T09:12:00+05:30"
+        },
+        {
+          "transaction_id": "TX-9502",
+          "beneficiary_id": "B-410",
+          "amount": 70000,
+          "occurred_at": "2026-09-29T09:18:00+05:30"
+        }
+      ],
+      "background_transactions": [],
+      "beneficiaries": [],
+      "device_events": [],
+      "account_links": [],
+      "risk_features": {
+        "feature_id": "RF-0095",
+        "transfers_in_window": 2,
+        "baseline_transfers_per_11_min": 0.5882352941176471,
+        "baseline_window_amount": 11000,
+        "velocity_multiple": 3.4,
+        "window_start": "2026-09-29T09:12:00+05:30",
+        "window_end": "2026-09-29T09:18:00+05:30"
+      },
+      "policy_id": "POL-REVIEW-8.1",
+      "evidence": [
+        {
+          "evidence_id": "C1",
+          "kind": "transaction",
+          "title": "Two outbound transfers",
+          "summary": "INR 145,000 moved in 6 minutes across two transactions.",
+          "source_table": "firestore/transactions",
+          "source_record": "TX-9501, TX-9502",
+          "observed_at": "2026-09-29T09:18:00+05:30",
+          "score_points": 15
+        },
+        {
+          "evidence_id": "C2",
+          "kind": "behaviour",
+          "title": "Configured transfer baseline",
+          "summary": "The observed window cannot be compared with the configured 11-minute baseline.",
+          "source_table": "firestore/features",
+          "source_record": "RF-0095",
+          "observed_at": "2026-09-29T09:18:00+05:30",
+          "score_points": 12
+        },
+        {
+          "evidence_id": "C3",
+          "kind": "device",
+          "title": "Device record",
+          "summary": "Device source record unavailable.",
+          "source_table": "firestore/devices",
+          "source_record": "DEV-0595",
+          "observed_at": "2026-09-29T09:18:00+05:30",
+          "score_points": 10
+        },
+        {
+          "evidence_id": "C4",
+          "kind": "network",
+          "title": "Network record",
+          "summary": "Network source record unavailable.",
+          "source_table": "firestore/links",
+          "source_record": "LINK-410-A",
+          "observed_at": "2026-09-29T09:18:00+05:30",
+          "score_points": 8
+        },
+        {
+          "evidence_id": "C5",
+          "kind": "policy",
+          "title": "Review procedure trigger",
+          "summary": "Internal review procedure §8.1 applies.",
+          "source_table": "firestore/policies",
+          "source_record": "POL-REVIEW-8.1",
+          "observed_at": "2026-09-29T09:18:00+05:30",
+          "score_points": 10
+        }
+      ],
+      "risk_events": [
+        {
+          "step": 1,
+          "time_label": "09:11",
+          "label": "Baseline",
+          "detail": "Configured starting score applied before observed activity.",
+          "risk_score": 12,
+          "network_points": 0
+        },
+        {
+          "step": 2,
+          "time_label": "09:12",
+          "label": "First transfer",
+          "detail": "First outbound payment to B-410.",
+          "risk_score": 30,
+          "network_points": 0
+        },
+        {
+          "step": 3,
+          "time_label": "09:18",
+          "label": "Second transfer",
+          "detail": "Total outbound reaches INR 145,000.",
+          "risk_score": 55,
+          "network_points": 0
+        }
+      ],
+      "mitigations": []
+    }
+  ],
+  "synthetic": true
+}

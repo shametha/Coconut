@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 48" fill="none">
+  <defs>
+    <linearGradient id="face" x1="195" y1="2" x2="195" y2="44" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#c8b58c"/><stop offset=".15" stop-color="#e1d1ae"/><stop offset=".37" stop-color="#f3e8cd"/><stop offset=".62" stop-color="#e5d6b4"/><stop offset=".85" stop-color="#c8b289"/><stop offset="1" stop-color="#a18a61"/>
+    </linearGradient>
+    <linearGradient id="end" x1="3" y1="24" x2="29" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#9d8153"/><stop offset=".5" stop-color="#c1a77b"/><stop offset="1" stop-color="#e5d2ae"/></linearGradient>
+    <linearGradient id="core" x1="13" y1="13" x2="23" y2="33" gradientUnits="userSpaceOnUse"><stop stop-color="#7d643e"/><stop offset=".55" stop-color="#b49a70"/><stop offset="1" stop-color="#e4d2b0"/></linearGradient>
+    <filter id="fibre"><feTurbulence baseFrequency=".7" numOctaves="2" seed="7" type="fractalNoise"/><feColorMatrix type="saturate" values="0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+  </defs>
+  <path d="M18 3C103 8 291 7 378 2C387 10 389 31 380 42C287 40 99 47 18 43Z" fill="url(#face)"/>
+  <path d="M19 4C112 9 289 8 378 3" stroke="#fcf3df" stroke-opacity=".7" stroke-width=".7"/>
+  <path d="M23 41C114 45 289 39 379 41" stroke="#8b744b" stroke-opacity=".35" stroke-width="1"/>
+  <ellipse cx="18" cy="24" rx="15" ry="21" fill="url(#end)"/>
+  <ellipse cx="20" cy="24" rx="9" ry="15" fill="url(#core)"/>
+  <path d="M21 7C4 5 2 39 20 40C30 37 29 14 20 13C10 12 10 33 21 32" stroke="#eadbbd" stroke-width="3.2"/>
+  <path d="M21 7C4 5 2 39 20 40C30 37 29 14 20 13C10 12 10 33 21 32" stroke="#f5ebd5" stroke-opacity=".55" stroke-width=".7"/>
+  <path d="M378 3C385 14 386 30 380 41" stroke="#b8a079" stroke-opacity=".6" stroke-width="1"/>
+  <path d="M31 5C132 10 287 7 379 4L381 39C286 38 120 44 30 40Z" fill="#6f5935" opacity=".06" filter="url(#fibre)"/>
+</svg>

@@ -1,0 +1,109 @@
+:root {
+  --bg: #f5f4f0;
+  --paper: #fffefa;
+  --ink: #17201e;
+  --muted: #73817d;
+  --line: #deded7;
+  --deep: #102a29;
+  --deep-2: #153936;
+  --accent: #e56d43;
+  --accent-soft: #fae7de;
+  --green: #348a6b;
+  --green-soft: #e9f4ed;
+  --shadow: 0 24px 80px rgba(22, 36, 32, 0.07);
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+.action-arrow[data-action-arrow] {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.12em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+  transform: rotate(-45deg);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+.action-arrow[data-action-arrow="down"] {
+  transform: rotate(45deg);
+}
+.action-arrow[data-action-arrow] .action-arrow-disc {
+  fill: var(--amber, #d8ad70);
+  stroke: none;
+  opacity: 0;
+  transform: scale(0.8);
+  transform-origin: 12px 12px;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+.action-arrow[data-action-arrow] .action-arrow-line {
+  fill: none;
+  stroke: currentColor;
+  transition: stroke 0.3s ease;
+}
+:is(a, button):is(:hover, :focus-visible):not(:disabled)
+  .action-arrow[data-action-arrow] {
+  transform: rotate(0deg);
+}
+:is(a, button):is(:hover, :focus-visible):not(:disabled)
+  .action-arrow[data-action-arrow]
+  .action-arrow-disc {
+  opacity: 1;
+  transform: scale(1);
+}
+:is(a, button):is(:hover, :focus-visible):not(:disabled)
+  .action-arrow[data-action-arrow]
+  .action-arrow-line {
+  stroke: #15140e;
+}
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+em {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+}
+h1,
+h2,
+h3,
+h4,
+p {
+  margin-top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

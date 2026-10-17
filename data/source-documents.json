@@ -1,0 +1,704 @@
+[
+  {
+    "caseId": "PF-0078",
+    "coverage": {
+      "approvalPaymentIds": [
+        "TX-7801",
+        "TX-7802"
+      ],
+      "complete": true
+    },
+    "id": "AUTH-78-PART-1",
+    "issuer": "Synthetic payment approval register",
+    "procedure": "authorization-review-1",
+    "records": [
+      {
+        "account": "AC-4501",
+        "actor": "DELEGATE-41",
+        "amount": 90000,
+        "approvedAt": "2026-09-27T15:59:00+05:30",
+        "beneficiary": "B-620",
+        "currency": "INR",
+        "id": "APR-TX-7801",
+        "kind": "approval",
+        "paymentId": "TX-7801",
+        "role": "delegate"
+      },
+      {
+        "account": "AC-4501",
+        "actor": "DELEGATE-41",
+        "amount": 88000,
+        "approvedAt": "2026-09-27T15:59:00+05:30",
+        "beneficiary": "B-620",
+        "currency": "INR",
+        "id": "APR-TX-7802",
+        "kind": "approval",
+        "paymentId": "TX-7802",
+        "role": "delegate"
+      }
+    ],
+    "synthetic": true,
+    "title": "Approval register · first two payments"
+  },
+  {
+    "caseId": "PF-0078",
+    "coverage": {
+      "approvalPaymentIds": [
+        "TX-7803",
+        "TX-7804"
+      ],
+      "complete": true
+    },
+    "id": "AUTH-78-PART-2",
+    "issuer": "Synthetic payment approval register",
+    "procedure": "authorization-review-1",
+    "records": [
+      {
+        "account": "AC-4501",
+        "actor": "DELEGATE-41",
+        "amount": 85000,
+        "approvedAt": "2026-09-27T15:59:00+05:30",
+        "beneficiary": "B-620",
+        "currency": "INR",
+        "id": "APR-TX-7803",
+        "kind": "approval",
+        "paymentId": "TX-7803",
+        "role": "delegate"
+      },
+      {
+        "account": "AC-4501",
+        "actor": "DELEGATE-41",
+        "amount": 87000,
+        "approvedAt": "2026-09-27T15:59:00+05:30",
+        "beneficiary": "B-620",
+        "currency": "INR",
+        "id": "APR-TX-7804",
+        "kind": "approval",
+        "paymentId": "TX-7804",
+        "role": "delegate"
+      }
+    ],
+    "synthetic": true,
+    "title": "Approval register · remaining payments"
+  },
+  {
+    "caseId": "PF-0078",
+    "coverage": {
+      "approvalPaymentIds": [],
+      "complete": true
+    },
+    "id": "MANDATE-78",
+    "issuer": "Synthetic delegation register",
+    "procedure": "authorization-review-1",
+    "records": [
+      {
+        "account": "AC-4501",
+        "actor": "DELEGATE-41",
+        "beneficiaries": [
+          "B-620"
+        ],
+        "caseTotalLimit": 300000,
+        "currency": "INR",
+        "id": "MANDATE-DELEGATE-41",
+        "kind": "delegation",
+        "perPaymentLimit": 100000,
+        "validFrom": "2026-09-01T00:00:00+05:30",
+        "validUntil": "2026-09-30T23:59:59+05:30"
+      }
+    ],
+    "synthetic": true,
+    "title": "Delegate mandate and payment limits"
+  },
+  {
+    "caseId": "PF-0078",
+    "coverage": {
+      "approvalPaymentIds": [],
+      "complete": true
+    },
+    "id": "STATEMENT-78",
+    "issuer": "Synthetic verified customer-contact register",
+    "procedure": "authorization-review-1",
+    "records": [
+      {
+        "account": "AC-4501",
+        "delegatedAuthority": "denies",
+        "directApproval": "denies",
+        "id": "CONTACT-78-1",
+        "kind": "customer_statement",
+        "paymentIds": [
+          "TX-7801",
+          "TX-7802",
+          "TX-7803",
+          "TX-7804"
+        ],
+        "reportedAt": "2026-09-28T09:00:00+05:30"
+      }
+    ],
+    "synthetic": true,
+    "title": "Customer statement · disputed delegation"
+  },
+  {
+    "caseId": "PF-0051",
+    "coverage": {
+      "approvalPaymentIds": [],
+      "complete": false
+    },
+    "id": "OBS-0051-1",
+    "issuer": "Synthetic device-possession review",
+    "procedure": "authorization-review-1",
+    "records": [
+      {
+        "account": "AC-2190",
+        "basis": "party_statement",
+        "domain": [
+          "customer",
+          "delegate",
+          "third_party"
+        ],
+        "field": "device.control",
+        "id": "OBS-0051-1-R1",
+        "kind": "observation",
+        "label": "Who controlled the payment device",
+        "paymentIds": [
+          "TX-5101",
+          "TX-5102",
+          "TX-5103"
+        ],
+        "recordedAt": "2026-10-01T09:00:00+05:30",
+        "value": "customer"
+      }
+    ],
+    "synthetic": true,
+    "title": "Who controlled the payment device · scoped source report"
+  },
+  {
+    "caseId": "PF-0051",
+    "coverage": {
+      "approvalPaymentIds": [],
+      "complete": false
+    },
+    "id": "OBS-0051-2",
+    "issuer": "Synthetic payment-support register",
+    "procedure": "authorization-review-1",
+    "records": [
+      {
+        "account": "AC-2190",
+        "basis": "system_record",
+        "domain": [
+          "supplier_payment",
+          "group_treasury",
+          "unexplained"
+        ],
+        "field": "payment.purpose",
+        "id": "OBS-0051-2-R1",
+        "kind": "observation",
+        "label": "Purpose of the payments",
+        "paymentIds": [
+          "TX-5101",
+          "TX-5102",
+          "TX-5103"
+        ],
+        "recordedAt": "2026-10-01T09:00:00+05:30",
+        "value": "group_treasury"
+      }
+    ],
+    "synthetic": true,
+    "title": "Purpose of the payments · scoped source report"
+  },
+  {
+    "caseId": "PF-0051",
+    "coverage": {
+      "approvalPaymentIds": [],
+      "complete": false
+    },
+    "id": "OBS-0051-3",
+    "issuer": "Synthetic funding reconciliation",
+    "procedure": "authorization-review-1",
+    "records": [
+      {
+        "account": "AC-2190",
+        "basis": "system_record",
+        "domain": [
+          "operating_revenue",
+          "borrowing",
+          "unexplained"
+        ],
+        "field": "funds.origin",
+        "id": "OBS-0051-3-R1",
+        "kind": "observation",
+        "label": "Source of the funds",
+        "paymentIds": [
+          "TX-5101",
+          "TX-5102",
+          "TX-5103"
+        ],
+        "recordedAt": "2026-10-01T09:00:00+05:30",
+        "value": "unexplained"
+      }
+    ],
+    "synthetic": true,
+    "title": "Source of the funds · scoped source report"
+  },
+  {
+    "caseId": "PF-0063",
+    "coverage": {
+      "approvalPaymentIds": [],
+      "complete": false
+    },
+    "id": "OBS-0063-1",
+    "issuer": "Synthetic device-possession review",
+    "procedure": "authorization-review-1",
+    "records": [
+      {
+        "account": "AC-3372",
+        "basis": "party_statement",
+        "domain": [
+          "customer",
+          "delegate",
+          "third_party"
+        ],
+        "field": "device.control",
+        "id": "OBS-0063-1-R1",
+        "kind": "observation",
+        "label": "Who controlled the payment device",
+        "paymentIds": [
+          "TX-6301",
+          "TX-6302",
+          "TX-6303",
+          "TX-6304",
+          "TX-6305",
+          "TX-6306",
+          "TX-6307"
+        ],
+        "recordedAt": "2026-10-01T09:00:00+05:30",
+        "value": "delegate"
+      }
+    ],
+    "synthetic": true,
+    "title": "Who controlled the payment device · scoped source report"
+  },
+  {
+    "caseId": "PF-0063",
+    "coverage": {
+      "approvalPaymentIds": [],
+      "complete": false
+    },
+    "id": "OBS-0063-2",
+    "issuer": "Synthetic payment-support register",
+    "procedure": "authorization-review-1",
+    "records": [
+      {
+        "account": "AC-3372",
+        "basis": "system_record",
+        "domain": [
+          "supplier_payment",
+          "group_treasury",
+          "unexplained"
+        ],
+        "field": "payment.purpose",
+        "id": "OBS-0063-2-R1",
+        "kind": "observation",
+        "label": "Purpose of the payments",
+        "paymentIds": [
+          "TX-6301",
+          "TX-6302",
+          "TX-6303",
+          "TX-6304",
+          "TX-6305",
+          "TX-6306",
+          "TX-6307"
+        ],
+        "recordedAt": "2026-10-01T09:00:00+05:30",
+        "value": "unexplained"
+      }
+    ],
+    "synthetic": true,
+    "title": "Purpose of the payments · scoped source report"
+  },
+  {
+    "caseId": "PF-0063",
+    "coverage": {
+      "approvalPaymentIds": [],
+      "complete": false
+    },
+    "id": "OBS-0063-3",
+    "issuer": "Synthetic funding reconciliation",
+    "procedure": "authorization-review-1",
+    "records": [
+      {
+        "account": "AC-3372",
+        "basis": "system_record",
+        "domain": [
+          "operating_revenue",
+          "borrowing",
+          "unexplained"
+        ],
+        "field": "funds.origin",
+        "id": "OBS-0063-3-R1",
+        "kind": "observation",
+        "label": "Source of the funds",
+        "paymentIds": [
+          "TX-6301",
+          "TX-6302",
+          "TX-6303",
+          "TX-6304",
+          "TX-6305",
+          "TX-6306",
+          "TX-6307"
+        ],
+        "recordedAt": "2026-10-01T09:00:00+05:30",
+        "value": "operating_revenue"
+      }
+    ],
+    "synthetic": true,
+    "title": "Source of the funds · scoped source report"
+  },
+  {
+    "caseId": "PF-0078",
+    "coverage": {
+      "approvalPaymentIds": [],
+      "complete": false
+    },
+    "id": "OBS-0078-1",
+    "issuer": "Synthetic device-possession review",
+    "procedure": "authorization-review-1",
+    "records": [
+      {
+        "account": "AC-4501",
+        "basis": "party_statement",
+        "domain": [
+          "customer",
+          "delegate",
+          "third_party"
+        ],
+        "field": "device.control",
+        "id": "OBS-0078-1-R1",
+        "kind": "observation",
+        "label": "Who controlled the payment device",
+        "paymentIds": [
+          "TX-7801",
+          "TX-7802",
+          "TX-7803",
+          "TX-7804"
+        ],
+        "recordedAt": "2026-10-01T09:00:00+05:30",
+        "value": "third_party"
+      }
+    ],
+    "synthetic": true,
+    "title": "Who controlled the payment device · scoped source report"
+  },
+  {
+    "caseId": "PF-0078",
+    "coverage": {
+      "approvalPaymentIds": [],
+      "complete": false
+    },
+    "id": "OBS-0078-2",
+    "issuer": "Synthetic payment-support register",
+    "procedure": "authorization-review-1",
+    "records": [
+      {
+        "account": "AC-4501",
+        "basis": "system_record",
+        "domain": [
+          "supplier_payment",
+          "group_treasury",
+          "unexplained"
+        ],
+        "field": "payment.purpose",
+        "id": "OBS-0078-2-R1",
+        "kind": "observation",
+        "label": "Purpose of the payments",
+        "paymentIds": [
+          "TX-7801",
+          "TX-7802",
+          "TX-7803",
+          "TX-7804"
+        ],
+        "recordedAt": "2026-10-01T09:00:00+05:30",
+        "value": "supplier_payment"
+      }
+    ],
+    "synthetic": true,
+    "title": "Purpose of the payments · scoped source report"
+  },
+  {
+    "caseId": "PF-0078",
+    "coverage": {
+      "approvalPaymentIds": [],
+      "complete": false
+    },
+    "id": "OBS-0078-3",
+    "issuer": "Synthetic funding reconciliation",
+    "procedure": "authorization-review-1",
+    "records": [
+      {
+        "account": "AC-4501",
+        "basis": "system_record",
+        "domain": [
+          "operating_revenue",
+          "borrowing",
+          "unexplained"
+        ],
+        "field": "funds.origin",
+        "id": "OBS-0078-3-R1",
+        "kind": "observation",
+        "label": "Source of the funds",
+        "paymentIds": [
+          "TX-7801",
+          "TX-7802",
+          "TX-7803",
+          "TX-7804"
+        ],
+        "recordedAt": "2026-10-01T09:00:00+05:30",
+        "value": "borrowing"
+      }
+    ],
+    "synthetic": true,
+    "title": "Source of the funds · scoped source report"
+  },
+  {
+    "caseId": "PF-0089",
+    "coverage": {
+      "approvalPaymentIds": [],
+      "complete": false
+    },
+    "id": "OBS-0089-1",
+    "issuer": "Synthetic device-possession review",
+    "procedure": "authorization-review-1",
+    "records": [
+      {
+        "account": "AC-5714",
+        "basis": "party_statement",
+        "domain": [
+          "customer",
+          "delegate",
+          "third_party"
+        ],
+        "field": "device.control",
+        "id": "OBS-0089-1-R1",
+        "kind": "observation",
+        "label": "Who controlled the payment device",
+        "paymentIds": [
+          "TX-8901",
+          "TX-8902",
+          "TX-8903",
+          "TX-8904",
+          "TX-8905",
+          "TX-8906"
+        ],
+        "recordedAt": "2026-10-01T09:00:00+05:30",
+        "value": "customer"
+      }
+    ],
+    "synthetic": true,
+    "title": "Who controlled the payment device · scoped source report"
+  },
+  {
+    "caseId": "PF-0089",
+    "coverage": {
+      "approvalPaymentIds": [],
+      "complete": false
+    },
+    "id": "OBS-0089-2",
+    "issuer": "Synthetic payment-support register",
+    "procedure": "authorization-review-1",
+    "records": [
+      {
+        "account": "AC-5714",
+        "basis": "system_record",
+        "domain": [
+          "supplier_payment",
+          "group_treasury",
+          "unexplained"
+        ],
+        "field": "payment.purpose",
+        "id": "OBS-0089-2-R1",
+        "kind": "observation",
+        "label": "Purpose of the payments",
+        "paymentIds": [
+          "TX-8901",
+          "TX-8902",
+          "TX-8903",
+          "TX-8904",
+          "TX-8905",
+          "TX-8906"
+        ],
+        "recordedAt": "2026-10-01T09:00:00+05:30",
+        "value": "group_treasury"
+      }
+    ],
+    "synthetic": true,
+    "title": "Purpose of the payments · scoped source report"
+  },
+  {
+    "caseId": "PF-0089",
+    "coverage": {
+      "approvalPaymentIds": [],
+      "complete": false
+    },
+    "id": "OBS-0089-3",
+    "issuer": "Synthetic funding reconciliation",
+    "procedure": "authorization-review-1",
+    "records": [
+      {
+        "account": "AC-5714",
+        "basis": "system_record",
+        "domain": [
+          "operating_revenue",
+          "borrowing",
+          "unexplained"
+        ],
+        "field": "funds.origin",
+        "id": "OBS-0089-3-R1",
+        "kind": "observation",
+        "label": "Source of the funds",
+        "paymentIds": [
+          "TX-8901",
+          "TX-8902",
+          "TX-8903",
+          "TX-8904",
+          "TX-8905",
+          "TX-8906"
+        ],
+        "recordedAt": "2026-10-01T09:00:00+05:30",
+        "value": "unexplained"
+      }
+    ],
+    "synthetic": true,
+    "title": "Source of the funds · scoped source report"
+  },
+  {
+    "caseId": "PF-0095",
+    "coverage": {
+      "approvalPaymentIds": [],
+      "complete": false
+    },
+    "id": "OBS-0095-1",
+    "issuer": "Synthetic device-possession review",
+    "procedure": "authorization-review-1",
+    "records": [
+      {
+        "account": "AC-6230",
+        "basis": "party_statement",
+        "domain": [
+          "customer",
+          "delegate",
+          "third_party"
+        ],
+        "field": "device.control",
+        "id": "OBS-0095-1-R1",
+        "kind": "observation",
+        "label": "Who controlled the payment device",
+        "paymentIds": [
+          "TX-9501",
+          "TX-9502"
+        ],
+        "recordedAt": "2026-10-01T09:00:00+05:30",
+        "value": "delegate"
+      }
+    ],
+    "synthetic": true,
+    "title": "Who controlled the payment device · scoped source report"
+  },
+  {
+    "caseId": "PF-0095",
+    "coverage": {
+      "approvalPaymentIds": [],
+      "complete": false
+    },
+    "id": "OBS-0095-1-DISPUTED",
+    "issuer": "Synthetic device-possession review",
+    "procedure": "authorization-review-1",
+    "records": [
+      {
+        "account": "AC-6230",
+        "basis": "party_statement",
+        "domain": [
+          "customer",
+          "delegate",
+          "third_party"
+        ],
+        "field": "device.control",
+        "id": "OBS-0095-1-R2",
+        "kind": "observation",
+        "label": "Who controlled the payment device",
+        "paymentIds": [
+          "TX-9501",
+          "TX-9502"
+        ],
+        "recordedAt": "2026-10-01T09:00:00+05:30",
+        "value": "third_party"
+      }
+    ],
+    "synthetic": true,
+    "title": "Device control · conflicting contact report"
+  },
+  {
+    "caseId": "PF-0095",
+    "coverage": {
+      "approvalPaymentIds": [],
+      "complete": false
+    },
+    "id": "OBS-0095-2",
+    "issuer": "Synthetic payment-support register",
+    "procedure": "authorization-review-1",
+    "records": [
+      {
+        "account": "AC-6230",
+        "basis": "system_record",
+        "domain": [
+          "supplier_payment",
+          "group_treasury",
+          "unexplained"
+        ],
+        "field": "payment.purpose",
+        "id": "OBS-0095-2-R1",
+        "kind": "observation",
+        "label": "Purpose of the payments",
+        "paymentIds": [
+          "TX-9501",
+          "TX-9502"
+        ],
+        "recordedAt": "2026-10-01T09:00:00+05:30",
+        "value": "unexplained"
+      }
+    ],
+    "synthetic": true,
+    "title": "Purpose of the payments · scoped source report"
+  },
+  {
+    "caseId": "PF-0095",
+    "coverage": {
+      "approvalPaymentIds": [],
+      "complete": false
+    },
+    "id": "OBS-0095-3",
+    "issuer": "Synthetic funding reconciliation",
+    "procedure": "authorization-review-1",
+    "records": [
+      {
+        "account": "AC-6230",
+        "basis": "system_record",
+        "domain": [
+          "operating_revenue",
+          "borrowing",
+          "unexplained"
+        ],
+        "field": "funds.origin",
+        "id": "OBS-0095-3-R1",
+        "kind": "observation",
+        "label": "Source of the funds",
+        "paymentIds": [
+          "TX-9501",
+          "TX-9502"
+        ],
+        "recordedAt": "2026-10-01T09:00:00+05:30",
+        "value": "operating_revenue"
+      }
+    ],
+    "synthetic": true,
+    "title": "Source of the funds · scoped source report"
+  }
+]

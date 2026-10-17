@@ -1,0 +1,371 @@
+.trigger {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 0;
+  border: 0;
+  background: transparent;
+  color: #e9e4d6;
+  font:
+    12px/1.6 Arial,
+    sans-serif;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.trigger:is(:hover, :focus-visible) {
+  color: var(--amber, #d8ad70);
+}
+.trigger svg {
+  width: 42px;
+  height: 24px;
+  overflow: visible;
+  fill: #dcba7d;
+}
+.trigger path {
+  fill: none;
+  stroke: #dcba7d;
+  stroke-width: 0.85;
+}
+.trigger:hover circle,
+.trigger.lit circle {
+  filter: drop-shadow(0 0 5px #dcba7d);
+}
+.trigger[hidden],
+.filament[hidden] {
+  display: none;
+}
+.trigger:focus-visible,
+.panel button:focus-visible {
+  outline: 2px solid #b08645;
+  outline-offset: 4px;
+}
+.filament {
+  position: fixed;
+  right: 3px;
+  top: 112px;
+  bottom: 24px;
+  width: 52px;
+  height: calc(100dvh - 136px);
+  z-index: 35;
+  overflow: visible;
+  pointer-events: none;
+}
+.filament path {
+  fill: none;
+  stroke: #dcba7d40;
+  stroke-width: 0.65;
+  transition: stroke 0.3s;
+}
+.filament .traveler {
+  opacity: 0;
+  stroke: #dcba7d;
+  stroke-width: 1.6;
+  stroke-dasharray: 25 900;
+  stroke-dashoffset: 925;
+  filter: drop-shadow(0 0 4px #f6cc8f);
+}
+.filament.lit path:first-child {
+  stroke: #dcba7db0;
+}
+.filament.lit .traveler {
+  opacity: 1;
+  animation: lightDown 0.8s ease-out forwards;
+}
+.panel {
+  --text: #293025;
+  --muted: #555b47;
+  --quiet: #687057;
+  --amber: #92672a;
+  --line: #65573726;
+  --surface: transparent;
+  position: fixed;
+  right: 48px;
+  top: var(--paper-top, 220px);
+  width: 340px;
+  z-index: 45;
+  visibility: hidden;
+  pointer-events: none;
+  color: var(--text);
+  color-scheme: light;
+  filter: drop-shadow(0 8px 12px #0004);
+}
+.unfurled {
+  visibility: visible;
+}
+.unfurled:not([inert]) {
+  pointer-events: auto;
+}
+.panel::after {
+  content: "";
+  position: absolute;
+  right: -29px;
+  top: 25px;
+  width: 30px;
+  border-top: 1px solid #dcba7d88;
+  transform: rotate(-12deg);
+  transform-origin: left;
+  pointer-events: none;
+}
+.sheet {
+  position: relative;
+  max-height: var(--available, 620px);
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #a18b63 transparent;
+  padding: 34px 25px 30px;
+  border-radius: 3px;
+  clip-path: inset(0 0 100% 0);
+  background:
+    linear-gradient(
+      99deg,
+      #9a835018,
+      transparent 14%,
+      #fff5 39%,
+      transparent 72%,
+      #806c3d18
+    ),
+    radial-gradient(ellipse at 42% 12%, #f6efdd90, transparent 66%),
+    radial-gradient(ellipse at 96% 98%, #a8976a33, transparent 50%),
+    linear-gradient(100deg, #e4d8bb, #eae0c7 44%, #e1d5b7);
+  box-shadow:
+    inset 1px 0 0 #fff8,
+    inset -1px 0 0 #9c895e55;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 370 1000' preserveAspectRatio='none'%3E%3Cpath d='M2 0C8 165 9 270 5 430C0 610 5 810 2 1000L367 1000C365 835 374 661 368 510C363 330 371 178 367 0Z' fill='white'/%3E%3C/svg%3E");
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+}
+.sheet::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.15;
+  mix-blend-mode: multiply;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.62' numOctaves='3' seed='19' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='.55'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(
+      93deg,
+      transparent 0 6px,
+      #6a56360c 6px 7px,
+      transparent 7px 15px
+    );
+}
+.sheet::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow:
+    inset 7px 0 11px -7px #9b804e88,
+    inset -8px 0 12px -9px #8f784880;
+  background: linear-gradient(
+    180deg,
+    #947b4530,
+    transparent 33px,
+    transparent calc(100% - 38px),
+    #a38b5630
+  );
+}
+.content {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+}
+.roll {
+  position: absolute;
+  z-index: 5;
+  top: -20px;
+  left: -9px;
+  right: -7px;
+  height: 44px;
+  transform: rotate(-0.35deg);
+  pointer-events: none;
+}
+.roll img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 2px 2px #0002);
+}
+.motionRoller {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: -3px;
+  right: -3px;
+  height: 30px;
+  z-index: 7;
+  pointer-events: none;
+  border-radius: 48% / 16%;
+  background: linear-gradient(
+    180deg,
+    #b6a27a,
+    #e8dbc0 14%,
+    #f5eedc 35%,
+    #ddd0b1 62%,
+    #bbaa80 84%,
+    #83724f
+  );
+  box-shadow:
+    0 8px 13px #0004,
+    inset 0 1px 0 #fff8;
+  transform-origin: center;
+}
+.motionRoller::before,
+.motionRoller::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  width: 9px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    #f0e8d4 12%,
+    #9f8e6c 18%,
+    #e2d5b8 30%,
+    #a99871 40%,
+    #dfd0af 62%,
+    #b5a17b 81%
+  );
+}
+.motionRoller::before {
+  left: -2px;
+}
+.motionRoller::after {
+  right: -2px;
+}
+.rolling .motionRoller {
+  visibility: visible;
+}
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+.head > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.head svg {
+  width: 25px;
+  height: 22px;
+  fill: var(--amber);
+  overflow: visible;
+}
+.head path {
+  fill: none;
+  stroke: var(--amber);
+  stroke-width: 0.7;
+}
+.head h2 {
+  font:
+    15px/1.4 Arial,
+    sans-serif;
+  letter-spacing: -0.3px;
+  margin: 0;
+}
+.head button {
+  border: 0;
+  background: transparent;
+  color: #59604b;
+  font:
+    25px/1 Arial,
+    sans-serif;
+  cursor: pointer;
+  width: 34px;
+  height: 36px;
+}
+.context {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #697157;
+  font:
+    10px/1.6 Arial,
+    sans-serif;
+  letter-spacing: 0.7px;
+  margin: 10px 0 21px;
+}
+.context i,
+.footer i {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--amber);
+  flex-shrink: 0;
+}
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #687057;
+  font:
+    10px/1.7 Arial,
+    sans-serif;
+  margin-top: 20px;
+}
+.shade {
+  position: fixed;
+  inset: 0;
+  background: #090b0866;
+  z-index: 44;
+}
+@keyframes lightDown {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@media (max-width: 1100px) {
+  .panel {
+    right: 40px;
+    width: 330px;
+  }
+  .filament {
+    right: -5px;
+  }
+}
+@media (max-width: 760px) {
+  .panel {
+    right: 26px;
+    width: min(345px, calc(100vw - 46px));
+  }
+  .trigger {
+    gap: 6px;
+    font-size: 11px;
+  }
+  .trigger svg {
+    width: 32px;
+  }
+  .filament {
+    right: -5px;
+    width: 35px;
+  }
+  .sheet {
+    padding: 34px 23px 28px;
+  }
+  .panel::after {
+    width: 14px;
+    right: -13px;
+  }
+  .roll {
+    height: 40px;
+    top: -18px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .filament path {
+    transition: none;
+  }
+  .filament.lit .traveler {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .motionRoller {
+    display: none;
+  }
+}

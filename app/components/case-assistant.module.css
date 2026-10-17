@@ -1,0 +1,808 @@
+.assistant {
+  padding: clamp(24px, 3vw, 40px);
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(ellipse at top right, #d8ad7009, transparent 60%),
+    var(--surface);
+}
+.compact {
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  padding: 20px 24px 0;
+  background: transparent;
+}
+.compact .heading[hidden],
+.compact .intro[hidden] {
+  display: none;
+}
+.compact .conversation {
+  flex: 1;
+  min-height: 0;
+  max-height: none;
+  margin-top: 0;
+  padding-right: 6px;
+}
+.compact .emptyConversation {
+  flex: 1;
+  display: grid;
+  align-content: center;
+}
+.compact .chatEmpty {
+  display: block;
+  border: 0;
+  padding: 16px 0 24px;
+  text-align: left;
+}
+.compact .chatEmpty p {
+  font:
+    30px/1.3 Georgia,
+    serif;
+  letter-spacing: -0.7px;
+  margin: 18px 0 0;
+}
+.emptyEyebrow {
+  font:
+    9px/1.5 Arial,
+    sans-serif;
+  color: var(--amber);
+  letter-spacing: 1.6px;
+}
+.compact .suggestions {
+  flex-shrink: 0;
+  flex-direction: column;
+  gap: 0;
+  margin: 10px 0 24px;
+  border-top: 1px solid var(--line);
+}
+.compact .suggestions button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  padding: 12px 0;
+  min-height: 44px;
+}
+.compact .suggestions button:hover {
+  color: var(--amber);
+}
+.compact .suggestions button span:first-child {
+  color: inherit;
+  margin: 0;
+}
+.compact .reference dl > div {
+  grid-template-columns: 1fr;
+  gap: 2px;
+}
+.compact .formFoot {
+  align-items: flex-end;
+  gap: 10px;
+}
+.compact .formFoot small {
+  display: none;
+}
+.compact .action {
+  gap: 16px;
+  padding: 10px 12px;
+  border: 0;
+  background: #d8ad70;
+  color: #202316;
+}
+.compact .action span {
+  color: #202316;
+}
+.compact .composer {
+  flex-shrink: 0;
+  padding: 14px;
+  border-color: #d8ad7040;
+}
+.compact .composer textarea {
+  padding: 0;
+  border: 0;
+  min-height: 60px;
+  max-height: 120px;
+  resize: none;
+  background: transparent;
+}
+.compact .composer label {
+  font-size: 9px;
+}
+
+.conversation {
+  max-height: 580px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #d8ad704d transparent;
+  margin-top: 26px;
+  padding: 10px 12px 0 0;
+}
+.chatEmpty {
+  display: grid;
+  place-items: center;
+  padding: 32px 20px 40px;
+  text-align: center;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.emptySymbol {
+  color: var(--amber);
+  font-size: 35px;
+}
+.chatEmpty p {
+  font-size: 17px;
+  margin: 18px 0 10px;
+  color: var(--text);
+}
+.chatEmpty > span:last-child {
+  font-size: 12px;
+  color: var(--quiet);
+}
+.exchange {
+  display: grid;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+.userMessage {
+  justify-self: end;
+  max-width: 85%;
+  padding: 18px 20px;
+  background: #d8ad700c;
+  border: 1px solid #d8ad7028;
+  border-radius: 12px 12px 2px 12px;
+}
+.userMessage p {
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.messageLabel {
+  font-size: 9px;
+  color: var(--amber);
+  letter-spacing: 1.5px;
+}
+.assistantMessage {
+  padding: 4px 0 24px;
+  border-bottom: 1px solid var(--line);
+}
+.assistantMessage > .messageLabel {
+  display: block;
+  margin-bottom: 18px;
+}
+.missingAnswer {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+.retryQuestion {
+  padding: 10px 0;
+  border: 0;
+  color: var(--amber) !important;
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+}
+.waitingThread {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 12px 0;
+}
+.waitingThread svg {
+  width: 130px;
+  height: 32px;
+  overflow: visible;
+  fill: var(--amber);
+}
+.waitingThread span {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.waitingPath {
+  fill: none;
+  stroke: #d8ad7033;
+  stroke-width: 1;
+}
+.waitingTravel {
+  fill: none;
+  stroke: var(--amber);
+  stroke-width: 1.5;
+  stroke-dasharray: 25 160;
+  animation: threadTravel 2.4s linear infinite;
+}
+.waitingThread circle {
+  animation: threadPulse 2.4s ease-in-out infinite;
+}
+.waitingThread circle:nth-of-type(2) {
+  animation-delay: 0.6s;
+}
+.waitingThread circle:nth-of-type(3) {
+  animation-delay: 1.2s;
+}
+@keyframes threadTravel {
+  to {
+    stroke-dashoffset: -185;
+  }
+}
+@keyframes threadPulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+.composer {
+  padding: 18px;
+  border: 1px solid var(--line);
+  background: #0b0d0a;
+}
+.composer textarea {
+  border: 0;
+  padding: 6px 0;
+  min-height: 68px;
+}
+.formFoot small {
+  display: block;
+  margin-top: 6px;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.aiMark i {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: var(--amber);
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+@media (prefers-reduced-motion: reduce) {
+  .waitingTravel,
+  .waitingThread circle {
+    animation: none;
+  }
+  .waitingTravel {
+    stroke-dasharray: none;
+  }
+}
+@media (max-width: 700px) {
+  .conversation {
+    max-height: 460px;
+    padding-right: 4px;
+  }
+  .userMessage {
+    max-width: 94%;
+  }
+  .composer {
+    padding: 14px;
+  }
+  .formFoot small {
+    display: none;
+  }
+  .formFoot {
+    flex-wrap: wrap;
+  }
+}
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.heading h3,
+.prepare h3 {
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 400;
+  letter-spacing: -0.8px;
+  margin: 12px 0;
+}
+.aiMark {
+  font-size: 9px;
+  color: var(--amber);
+  letter-spacing: 1.5px;
+  border: 1px solid #d8ad7035;
+  padding: 8px 10px;
+  white-space: nowrap;
+}
+.intro,
+.prepare p {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 13px;
+  max-width: 650px;
+}
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 26px 0;
+}
+.suggestions button {
+  background: transparent;
+  border: 1px solid var(--line);
+  padding: 12px;
+  font-size: 11px;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.suggestions button:hover {
+  border-color: var(--amber);
+}
+.suggestions span {
+  color: var(--amber);
+  margin-left: 14px;
+}
+.assistant label {
+  display: block;
+  font-size: 11px;
+  margin-bottom: 10px;
+  color: var(--muted);
+}
+.assistant textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 88px;
+  max-height: 240px;
+  border: 1px solid var(--line);
+  background: #0b0d0a;
+  color: var(--text);
+  padding: 16px;
+  font:
+    14px/1.6 Arial,
+    sans-serif;
+  box-sizing: border-box;
+}
+.assistant textarea:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+.assistant textarea::placeholder {
+  color: var(--quiet);
+}
+.formFoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 12px;
+}
+.formFoot > span {
+  color: var(--quiet);
+  font-size: 10px;
+}
+.action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  padding: 14px 18px;
+  border: 1px solid #d8ad7066;
+  background: #d8ad700b;
+  font-size: 12px;
+  cursor: pointer;
+  min-height: 44px;
+}
+.action span {
+  color: var(--amber);
+}
+.action:hover:not(:disabled) {
+  background: #d8ad7019;
+}
+.status {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 20px 0;
+}
+.error {
+  border-left: 2px solid var(--amber);
+  padding-left: 14px;
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.answer {
+  border-top: 1px solid var(--line);
+  margin-top: 28px;
+  padding-top: 28px;
+}
+.answer h4 {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 12px 0 20px;
+}
+.answer > p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+.facts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 18px;
+}
+.facts li {
+  padding-left: 18px;
+  position: relative;
+}
+.facts li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--amber);
+}
+.facts p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.9;
+}
+.citations {
+  white-space: nowrap;
+}
+.next {
+  display: inline-block;
+  color: var(--amber) !important;
+  font-size: 12px;
+  padding: 16px 0 0;
+}
+.reference {
+  margin-top: 28px;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  color: var(--quiet);
+  font:
+    11px/1.8 Arial,
+    sans-serif;
+}
+.reference summary {
+  cursor: pointer;
+  width: fit-content;
+  min-height: 28px;
+}
+.reference summary:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 4px;
+}
+.reference dl {
+  display: grid;
+  gap: 10px;
+  margin: 15px 0 0;
+}
+.reference dl > div {
+  display: grid;
+  grid-template-columns: 145px minmax(0, 1fr);
+  gap: 12px;
+}
+.reference dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--muted);
+}
+.prepare {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.prepare .action {
+  flex-shrink: 0;
+}
+.downloads {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.paper {
+  --text: #2d3026;
+  --muted: #555642;
+  --quiet: #676348;
+  --line: #35372033;
+  --amber: #856126;
+}
+@media (max-width: 700px) {
+  .heading,
+  .prepare {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .suggestions {
+    flex-direction: column;
+  }
+  .suggestions button {
+    display: flex;
+    justify-content: space-between;
+    min-height: 44px;
+  }
+  .reference dl > div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+  .downloads {
+    gap: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* The shared copilot reads like a note on the parchment, not chat bubbles. */
+.scrollNote.compact {
+  height: auto;
+  padding: 0;
+}
+.scrollNote .conversation {
+  flex: initial;
+  order: 0;
+  max-height: max(100px, calc(var(--available, 620px) - 280px));
+  padding: 0 3px 0 0;
+  scrollbar-color: #a18b63 transparent;
+}
+.scrollNote .emptyConversation {
+  display: block;
+  max-height: none;
+}
+.scrollNote .chatEmpty {
+  padding: 0;
+}
+.scrollNote .chatEmpty p {
+  font:
+    27px/1.3 Georgia,
+    serif;
+  letter-spacing: -0.55px;
+  color: var(--text);
+  margin: 0 0 18px;
+}
+.scrollNote .exchange {
+  gap: 17px;
+  margin-bottom: 18px;
+}
+.scrollNote .userMessage {
+  justify-self: stretch;
+  max-width: none;
+  padding: 0 0 0 11px;
+  border: 0;
+  border-left: 1px solid #a17e44;
+  border-radius: 0;
+  background: transparent;
+}
+.scrollNote .userMessage p {
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 0;
+  color: #626a52;
+}
+.scrollNote .messageLabel {
+  display: none;
+}
+.scrollNote .assistantMessage {
+  padding: 0 0 14px;
+}
+.scrollNote .facts {
+  gap: 15px;
+}
+.scrollNote .facts li {
+  padding: 0;
+}
+.scrollNote .facts li::before {
+  display: none;
+}
+.scrollNote .facts p {
+  font:
+    12px/1.85 Arial,
+    sans-serif;
+  color: var(--muted);
+}
+.scrollNote .facts li:first-child p {
+  font:
+    23px/1.5 Georgia,
+    serif;
+  letter-spacing: -0.25px;
+  color: var(--text);
+}
+.scrollNote .citations button {
+  font:
+    10px/1.8 Arial,
+    sans-serif;
+  vertical-align: super;
+  padding: 2px 4px;
+}
+.scrollNote .reference {
+  margin-top: 15px;
+  padding-top: 10px;
+  font-size: 10px;
+}
+.scrollNote .next {
+  font-size: 11px;
+  padding-top: 12px;
+}
+.scrollNote .composer {
+  order: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 10px;
+  padding: 0 0 8px;
+  border: 0;
+  border-bottom: 1px solid #96753f80;
+  background: transparent;
+}
+.scrollNote .composer:focus-within {
+  border-bottom-color: #78541f;
+}
+.scrollNote .composer label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.scrollNote .composer textarea {
+  min-height: 62px;
+  max-height: 110px;
+  font-size: 13px;
+  color: var(--text);
+  resize: none;
+}
+.scrollNote textarea::placeholder {
+  color: #6b705b;
+}
+.scrollNote textarea:focus-visible {
+  outline: 0;
+}
+.scrollNote .formFoot {
+  display: contents;
+}
+.scrollNote .formFoot > span {
+  display: none;
+}
+.scrollNote .action {
+  padding: 8px 0 8px 4px;
+  min-height: 44px;
+  gap: 10px;
+  background: transparent;
+  color: #81581f;
+  font-size: 12px;
+}
+.scrollNote .action span {
+  font-size: 23px;
+  color: #81581f;
+}
+.scrollNote .action:hover:not(:disabled) {
+  background: transparent;
+  color: #493112;
+}
+.scrollNote .action:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.scrollNote .suggestions {
+  order: 2;
+  flex-direction: row;
+  border: 0;
+  margin: 16px 0 0;
+  gap: 8px 12px;
+}
+.scrollNote .suggestions[hidden] {
+  display: none;
+}
+.scrollNote .suggestions button {
+  min-height: 32px;
+  padding: 0;
+  font-size: 10px;
+  line-height: 1.6;
+  border: 0;
+  justify-content: start;
+  gap: 5px;
+  color: var(--muted);
+}
+.scrollNote .suggestions button span:last-child {
+  margin-left: 0;
+}
+.scrollNote .waitingThread {
+  padding: 8px 0 18px;
+  gap: 8px;
+}
+.scrollNote .waitingThread svg {
+  width: 100%;
+  height: 32px;
+}
+.scrollNote .waitingPath {
+  stroke: #92672a44;
+}
+.scrollNote .waitingThread span,
+.scrollNote .error,
+.scrollNote .missingAnswer {
+  font-size: 12px;
+}
+.guide h3 {
+  font:
+    24px/1.4 Georgia,
+    serif;
+  letter-spacing: -0.4px;
+  margin: 0 0 14px;
+}
+.guide p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+.guide ul {
+  list-style: none;
+  margin: 18px 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.guide li {
+  display: grid;
+  gap: 3px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.guide strong {
+  color: var(--amber);
+  font-weight: 400;
+}
+.sourcePreview {
+  border-top: 1px solid var(--line);
+  padding: 14px 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+.sourcePreview header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.sourcePreview strong {
+  color: var(--amber);
+  font-weight: 400;
+}
+.sourcePreview button {
+  border: 0;
+  background: transparent;
+  font-size: 22px;
+  color: var(--muted);
+  cursor: pointer;
+  min-width: 32px;
+  min-height: 32px;
+}
+.sourcePreview dl {
+  display: grid;
+  gap: 10px;
+  margin: 15px 0 0;
+}
+.sourcePreview dt {
+  color: var(--quiet);
+  font-size: 9px;
+}
+.sourcePreview dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 760px) {
+  .scrollNote .action {
+    min-height: 44px;
+  }
+  .scrollNote .suggestions button {
+    min-height: 38px;
+  }
+}

@@ -1,0 +1,28 @@
+.field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100svh;
+  pointer-events: none;
+}
+.discovery {
+  position: fixed;
+  right: clamp(20px, 5vw, 80px);
+  bottom: 24px;
+  z-index: 4;
+  color: #cdb68e;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.visible {
+  opacity: 0.8;
+}
+@media (prefers-reduced-motion: reduce) {
+  .discovery {
+    transition: none;
+  }
+}

@@ -1,0 +1,23 @@
+runConfig:
+  minInstances: 0
+  maxInstances: 2
+  concurrency: 40
+  cpu: 1
+  memoryMiB: 1024
+env:
+  - variable: COCONUT_APP_ORIGIN
+    value: https://coconut--coconut-73726.us-central1.hosted.app
+    availability:
+      - RUNTIME
+  - variable: GCLOUD_PROJECT
+    value: coconut-73726
+    availability:
+      - RUNTIME
+  - variable: GEMINI_API_KEY
+    secret: GEMINI_API_KEY
+    availability:
+      - RUNTIME
+  - variable: GEMINI_MODEL
+    value: gemini-flash-latest
+  - variable: COCONUT_HOURLY_AI_LIMIT
+    value: "24"
